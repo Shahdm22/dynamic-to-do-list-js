@@ -15,13 +15,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ✅ Add task on Enter key press
+    taskInput.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            const taskText = taskInput.value.trim();
+            if (taskText === "") {
+                alert("Please enter a task.");
+            } else {
+                addTask(taskText);
+                taskInput.value = "";
+            }
+        }
+    });
+
     function addTask(taskText, save = true) {
         const li = document.createElement('li');
         li.textContent = taskText;
 
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
-        removeBtn.classList.add('remove-btn'); // ✅ Required usage
+        removeBtn.classList.add('remove-btn');
 
         removeBtn.onclick = function () {
             taskList.removeChild(li);
@@ -45,7 +58,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function removeTaskFromStorage(taskText) {
         let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-        tasks = tasks.filter(task => task !== taskText);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-});
+        tasks = tasks.
