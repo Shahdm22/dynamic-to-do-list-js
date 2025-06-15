@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskBtn = document.getElementById('add-task-btn');
     const taskList = document.getElementById('task-list');
 
-    // Load tasks from Local Storage on page load
+    // Load tasks on page load
     loadTasks();
 
+    // Add task button click
     addTaskBtn.addEventListener('click', () => {
         const taskText = taskInput.value.trim();
         if (taskText === "") {
@@ -23,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
         removeBtn.className = "remove-btn";
-
         removeBtn.onclick = function () {
             taskList.removeChild(li);
             removeTaskFromStorage(taskText);
